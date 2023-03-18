@@ -9,19 +9,22 @@ const {
 
 const router = express.Router();
 
-// GET /tasks
-router.get("/", getAllTasks);
+router.route("/").get(getAllTasks).post(createTask);
+router.route("/:id").get(getTask).patch(updateTask).delete(deleteTask);
 
-// GET /tasks/:id
-router.get("/:id", getTask);
+// // GET /tasks
+// router.get("/", getAllTasks);
 
-// POST create  /tasks
-router.post("/", createTask);
+// // GET /tasks/:id
+// router.get("/:id", getTask);
 
-// PUT update /tasks/:id
-router.put("/:id", updateTask);
+// // POST create  /tasks
+// router.post("/", createTask);
 
-// DELETE /tasks/:id
-router.delete("/:id", deleteTask);
+// // PUT update /tasks/:id
+// router.patch("/:id", updateTask);
+
+// // DELETE /tasks/:id
+// router.delete("/:id", deleteTask);
 
 module.exports = router;
