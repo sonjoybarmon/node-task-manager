@@ -43,19 +43,17 @@ const getTask = async (req, res) => {
 const updateTask = async (req, res) => {
   try {
     // patch function create here
-    try {
-      const { id } = req.params;
-      const task = await Tasks.findOneAndUpdate(id, res.body, {
-        new: true,
-        runValidators: true,
-      });
+    const { id } = req.params;
+    const task = await Tasks.findOneAndUpdate(id, res.body, {
+      new: true,
+      runValidators: true,
+    });
 
-      if (task) {
-        await task.save();
-        return res.status(200).json({ task });
-      }
-      res.status(404).json({ message: "Task not found!" });
-    } catch (error) {}
+    if (task) {
+      await task.save();
+      return res.status(200).json({ task });
+    }
+    res.status(404).json({ message: "Task not found!" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
